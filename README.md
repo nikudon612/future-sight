@@ -1,9 +1,4 @@
-Here’s your fully rewritten, **Future Sight–branded** `README.md`, cleaned up and restructured to reflect the new name and vibe while keeping all your core info intact:
-
----
-
-```markdown
-🔮 Future Sight Scheduler
+# 🔮 Future Sight Scheduler
 
 A Discord-integrated scheduling app built to organize and streamline Magic: The Gathering Commander games for your playgroup. Designed with SvelteKit, Supabase, and Discord OAuth, **Future Sight** makes scheduling games, sending reminders, and managing players seamless and efficient.
 
@@ -109,13 +104,3 @@ npm run preview  # Preview your production build
 Just like the Magic: The Gathering set it’s named after, **Future Sight** is all about planning ahead — empowering your Commander pod to see what’s coming next, and making game night smoother and more organized than ever.
 
 ---
-
-```
-
-Let me know if you want to:
-- Add badges (like build status, license, etc.)
-- Include contribution instructions
-- Auto-generate docs
-- Or integrate this with GitHub Pages later on
-
-Want this saved in your project automatically?
