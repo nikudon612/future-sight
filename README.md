@@ -1,84 +1,121 @@
-# ⏳ Time Spiral Scheduler
+Here’s your fully rewritten, **Future Sight–branded** `README.md`, cleaned up and restructured to reflect the new name and vibe while keeping all your core info intact:
 
-A Discord-integrated scheduling app designed specifically for managing Magic: The Gathering Commander games for your playgroup. Built with SvelteKit, Supabase, and Discord OAuth, Time Spiral Scheduler streamlines game scheduling, reminders, and player management.
+---
 
-> **⚠️ Note:** This project is currently under active development.
+```markdown
+🔮 Future Sight Scheduler
+
+A Discord-integrated scheduling app built to organize and streamline Magic: The Gathering Commander games for your playgroup. Designed with SvelteKit, Supabase, and Discord OAuth, **Future Sight** makes scheduling games, sending reminders, and managing players seamless and efficient.
+
+> ⚠️ This project is currently under active development.
+
+---
 
 ## ✨ Features
 
-- **Discord OAuth Login**: Seamless user authentication using Discord credentials.
-- **Supabase Integration**: Securely store user data and manage game schedules.
-- **Session Management**: Lightweight cookie-based sessions, removing the need for heavy auth libraries.
-- **Intuitive Scheduling Interface**: Allow players to view, book, and manage scheduled games easily.
+- **Discord OAuth Login**  
+  Authenticate users through their Discord accounts for easy sign-in.
+
+- **Supabase Integration**  
+  Store user profiles, schedules, and booking data securely.
+
+- **Session Management**  
+  Lightweight cookie-based sessions without heavy auth dependencies.
+
+- **Commander-Centric Scheduling UI**  
+  An intuitive interface to view, book, and manage Commander games with your group.
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [SvelteKit](https://kit.svelte.dev/) (TypeScript)
-- **Database & Auth**: [Supabase](https://supabase.com)
-- **Authentication**: Discord OAuth2
+- **Frontend**: SvelteKit (TypeScript)  
+- **Database & Auth**: Supabase  
+- **Authentication**: Discord OAuth2  
 
-## 📚 Project Structure
+---
+
+## 📁 Project Structure
 
 ```
-frontend/
-├── src/
-│   ├── lib/
-│   │   └── server/
-│   │       └── supabase.ts
-│   ├── routes/
-│   │   ├── login/
-│   │   ├── callback/
-│   │   └── logout/
-│   ├── hooks.server.ts
-│   └── app.d.ts
-├── .env
-└── package.json
+future-sight/
+├── frontend/
+│   ├── src/
+│   │   ├── lib/
+│   │   │   └── server/
+│   │   │       └── supabase.ts
+│   │   ├── routes/
+│   │   │   ├── login/
+│   │   │   ├── callback/
+│   │   │   └── logout/
+│   │   ├── hooks.server.ts
+│   │   └── app.d.ts
+│   ├── .env
+│   └── package.json
+├── bot/            # Future CLI + Discord bot integrations (coming soon)
+├── supabase/       # Supabase configuration and migration tracking
+└── README.md
 ```
+
+---
 
 ## 🔒 Security
 
-Ensure your `.env` file is never committed to your repository. Verify it is listed in `.gitignore`.
+- Your `.env` file should **never** be committed.
+- Confirm `.env` is included in `.gitignore`.
+
+---
 
 ## 📄 License
 
 MIT License.
 
+---
 
-# sv
+## 🧪 Development Guide
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project was scaffolded using `sv`, a Svelte starter tool.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+### Create a New Project (already done)
 
 ```bash
-# create a new project in the current directory
 npx sv create
-
-# create a new project in my-app
+# or in a named folder
 npx sv create my-app
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Start the Dev Server
 
 ```bash
+npm install
 npm run dev
-
-# or start the server and open the app in a new browser tab
+# or auto-open in browser
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+### Build for Production
 
 ```bash
 npm run build
+npm run preview  # Preview your production build
 ```
 
-You can preview the production build with `npm run preview`.
+> For deployment, you may need to configure a platform-specific adapter (e.g. Vercel, Netlify).
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+---
+
+## 🧙‍♂️ About the Name
+
+Just like the Magic: The Gathering set it’s named after, **Future Sight** is all about planning ahead — empowering your Commander pod to see what’s coming next, and making game night smoother and more organized than ever.
+
+---
+
+```
+
+Let me know if you want to:
+- Add badges (like build status, license, etc.)
+- Include contribution instructions
+- Auto-generate docs
+- Or integrate this with GitHub Pages later on
+
+Want this saved in your project automatically?
