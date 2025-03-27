@@ -10,3 +10,7 @@ body {
 #svelte {
   height: 100%;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

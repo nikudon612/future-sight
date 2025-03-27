@@ -15,10 +15,10 @@
   </script>
   
   <main class="min-h-screen h-full w-full text-white bg-gradient-to-br from-[#c3efff] via-[#69a8e3] to-[#2f4da1] bg-fixed bg-cover bg-blend-overlay p-6 font-sans overflow-y-auto">
-	<div class="max-w-4xl mx-auto space-y-10">
+	<div class="max-w-4xl mx-auto m-0 p-!0">
 	  <!-- Header -->
 	  <header class="flex items-center justify-between">
-		<h1 class="text-3xl font-bold drop-shadow">🔮 Future Sight</h1>
+		<h1 class="text-10xl font-bold drop-shadow">🔮 Future Sight</h1>
 		<div class="text-sm text-white/80">Timezone: {timezone}</div>
 	  </header>
   
