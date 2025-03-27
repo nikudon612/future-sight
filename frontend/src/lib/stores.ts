@@ -11,8 +11,8 @@ export const upcomingGames = writable([
   {
     title: 'Friday Night Commander',
     datetime: new Date().toISOString(),
-    players: ['niku', 'travis', 'corn', 'd'],
-    notes: 'Power level 6-7. Bring precons only.'
+    players: ['niku', 'travis', 'ike', 'd'],
+    notes: 'Brackets 2-3. Bring precons only.'
   }
 ]);
 
@@ -21,7 +21,7 @@ export const myGames = writable([
   {
     title: 'Friday Night Commander',
     datetime: new Date().toISOString(),
-    players: ['niku', 'travis', 'corn', 'd'],
-    notes: 'Power level 6-7. Bring precons only.'
+    players: ['niku', 'travis', 'ike', 'd'],
+    notes: 'Brackets 2-3. Bring precons only.'
   }
 ]);
