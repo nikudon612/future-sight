@@ -8,9 +8,13 @@
   
 	import { user, upcomingGames, myGames } from '$lib/stores';
 	let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+	export let data;
+	 console.log(data);
+	console.log(data.user);
   </script>
   
-  <main class="min-h-screen text-white bg-gradient-to-br from-[#c3efff] via-[#69a8e3] to-[#2f4da1] bg-fixed bg-cover bg-blend-overlay p-6 font-sans">
+  <main class="min-h-screen h-full w-full text-white bg-gradient-to-br from-[#c3efff] via-[#69a8e3] to-[#2f4da1] bg-fixed bg-cover bg-blend-overlay p-6 font-sans overflow-y-auto">
 	<div class="max-w-4xl mx-auto space-y-10">
 	  <!-- Header -->
 	  <header class="flex items-center justify-between">
@@ -30,7 +34,7 @@
 	  <UpcomingGamesFeed games={upcomingGames} />
   
 	  <!-- My Profile -->
-	  <UserProfile {user} {timezone} />
+	  <UserProfile user={data.user} timezone={data.user?.timezone ?? 'America/New_York'} />
   
 	  <footer class="text-center text-white/60 text-sm pt-10">
 		© {new Date().getFullYear()} Future Sight Scheduler
@@ -46,4 +50,3 @@
 	  background-size: cover;
 	}
   </style>
-  

@@ -55,13 +55,21 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 	const isMember = guilds.some((guild: any) => guild.id === DISCORD_SERVER_ID);
 	if (!isMember) return redirect(302, "/not-authorized");
 
-	// 4. Upsert user
+	// 4. Build avatar URL
+	const avatar_url = discordUser.avatar
+		? `https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png`
+		: null;
+
+	// 5. Upsert user into Supabase
 	const { data: user, error } = await supabase
 		.from("users")
 		.upsert(
 			{
 				discord_id: discordUser.id,
-				email: discordUser.email
+				email: discordUser.email,
+				username: discordUser.username,
+				global_name: discordUser.global_name ?? null,
+				avatar_url
 			},
 			{ onConflict: "discord_id" }
 		)
@@ -73,15 +81,15 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
 		return redirect(302, "/error");
 	}
 
-	// 5. Set session cookie
+	// 6. Set session cookie
 	cookies.set("session", JSON.stringify({ id: user.id }), {
 		path: "/",
 		httpOnly: true,
 		sameSite: "lax",
 		secure: false,
-		maxAge: 60 * 60 * 24 * 7
+		maxAge: 60 * 60 * 24 * 7 // 7 days
 	});
 
-	// 6. Redirect to dashboard
+	// 7. Redirect to dashboard
 	return redirect(302, "/dashboard");
 };
