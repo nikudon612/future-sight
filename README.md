@@ -1,38 +1,96 @@
-# sv
+Got it — here’s a clean, updated **README** that blends the structure and voice of the original while reflecting your new stack (Lucia instead of Supabase) and current direction:
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+---
 
-## Creating a project
+```markdown
+# 🔮 Future Sight Scheduler
 
-If you're seeing this, you've probably already done this step. Congrats!
+A Discord-integrated scheduling app built to organize and streamline Magic: The Gathering Commander games for your playgroup. Rebuilt from the ground up using SvelteKit and Lucia, **Future Sight** empowers you to schedule games, manage players, and send reminders with ease.
 
-```bash
-# create a new project in the current directory
-npx sv create
+> ⚠️ This project is under active redevelopment with a new architecture.
 
-# create a new project in my-app
-npx sv create my-app
+---
+
+## ✨ Features
+
+- **Discord OAuth Login**  
+  Authenticate users through their Discord accounts using Lucia.
+
+- **Lucia Authentication**  
+  Lightweight, flexible session and user management without heavy auth dependencies.
+
+- **Commander-Centric Scheduling UI**  
+  An intuitive interface to view, book, and manage Commander games with your group.
+
+- **Flexible Architecture**  
+  Built to grow: frontend with SvelteKit, backend features integrated with future support for a game bot and reminders.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend & Framework**: SvelteKit (TypeScript)  
+- **Authentication**: Lucia (with Discord OAuth)  
+- **Database**: (TBD / Self-managed or coming soon)  
+- **Bot Integration**: Planned with Discord.js
+
+---
+
+## 📁 Project Structure
+
+```
+future-sight/
+├── src/
+│   ├── lib/
+│   │   └── server/
+│   │       └── auth/         # Lucia + Discord integration
+│   ├── routes/
+│   │   ├── login/
+│   │   ├── callback/
+│   │   └── logout/
+│   ├── hooks.server.ts
+│   └── app.d.ts
+├── static/
+├── .env
+└── README.md
 ```
 
-## Developing
+---
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## 🔐 Environment Setup
+
+Ensure `.env` includes the proper values for your Discord app and session secret.
+
+> Your `.env` file should **never** be committed. Confirm it is listed in `.gitignore`.
+
+---
+
+## 🧪 Development Guide
+
+### Install & Start Dev Server
 
 ```bash
+npm install
 npm run dev
+```
 
-# or start the server and open the app in a new browser tab
+Or open the app in your browser automatically:
+
+```bash
 npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+### Build for Production
 
 ```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+> For deployment, install the appropriate [adapter](https://kit.svelte.dev/docs/adapters) (e.g. Vercel, Netlify, etc.).
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+---
+
+## 🧙‍♂️ About the Name
+
+Just like the Magic: The Gathering set it’s named after, **Future Sight** is all about planning ahead — empowering your Commander pod to see what’s coming next and making game night smoother and more organized than ever.
