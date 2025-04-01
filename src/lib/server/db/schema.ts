@@ -1,20 +1,25 @@
-import { pgTable, serial, text, integer, timestamp } from 'drizzle-orm/pg-core';
+// src/lib/server/db/schema.ts
+import { pgTable, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const user = pgTable('user', {
-	id: text('id').primaryKey(),
-	age: integer('age'),
-	username: text('username').notNull().unique(),
-	passwordHash: text('password_hash').notNull()
+	id: text('id').primaryKey(), // Discord ID (string)
+	username: text('username').notNull(),
+	avatar_url: text('avatar_url'),
+	created_at: timestamp('created_at', { mode: 'date' }).defaultNow()
 });
 
 export const session = pgTable('session', {
 	id: text('id').primaryKey(),
-	userId: text('user_id')
+	user_id: text('user_id')
 		.notNull()
 		.references(() => user.id),
-	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
+	expires_at: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
 });
 
-export type Session = typeof session.$inferSelect;
-
-export type User = typeof user.$inferSelect;
+export const key = pgTable('key', {
+	id: text('id').primaryKey(), // "oauth_discord:discordId"
+	user_id: text('user_id')
+		.notNull()
+		.references(() => user.id),
+	// hashed_password is optional—omit it for OAuth-only
+});
