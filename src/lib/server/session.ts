@@ -6,20 +6,28 @@ export async function getSession(request: Request) {
   const cookieHeader = request.headers.get('cookie') || '';
   const cookies = parse(cookieHeader);
 
-  const sessionCookie = cookies['auth-session'];  // Make sure this is the cookie set by Supabase (auth-session or your custom name)
+  // Log cookies to see what is in the request
+  console.log('Cookies:', cookies);
+
+  const sessionCookie = cookies['auth-session'];  // Ensure this is the correct cookie name you set
+
+  // Log session cookie to see if it's being set
+  console.log('Session Cookie:', sessionCookie);
 
   if (sessionCookie) {
     try {
-      // Use Supabase to get the user from the session cookie
-      const { user, error } = await supabase.auth.api.getUserByCookie(request);
+      // Use supabase.auth.getSession() to get the current session from cookies
+      const { data: session, error } = await supabase.auth.getSession();
+      
+      console.log('Supabase session:', session);  // Log the session data
 
-      if (error || !user) {
+      if (error || !session) {
         console.warn('Invalid or expired session', error);
         return null;
       }
 
-      // Return the user if the session is valid
-      return { user, session: sessionCookie };
+      // Return the user and session if valid
+      return { user: session.user, session };
     } catch (e) {
       console.warn('Error parsing session cookie:', e);
       return null;
