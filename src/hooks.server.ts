@@ -1,26 +1,39 @@
+import { supabase } from '$lib/server/supabaseClient';
 import type { Handle } from '@sveltejs/kit';
-import * as auth from '$lib/server/auth.js';
 
-const handleAuth: Handle = async ({ event, resolve }) => {
-	const sessionToken = event.cookies.get(auth.sessionCookieName);
+export const handle: Handle = async ({ event, resolve }) => {
+  const sessionCookie = event.cookies.get('session');
 
-	if (!sessionToken) {
-		event.locals.user = null;
-		event.locals.session = null;
-		return resolve(event);
-	}
+  if (sessionCookie) {
+    try {
+      // Try to parse the session cookie into a JSON object
+      let session = null;
+      try {
+        session = JSON.parse(sessionCookie); // Parse it as JSON
+      } catch (e) {
+        console.warn('Invalid session cookie:', e);
+      }
 
-	const { session, user } = await auth.validateSessionToken(sessionToken);
+      if (session) {
+        // Fetch user from the Supabase users table using the session ID
+        const { data: user, error } = await supabase
+          .from('users')
+          .select('*')
+          .eq('id', session.id) // Match the session ID with the user table
+          .single();
 
-	if (session) {
-		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
-	} else {
-		auth.deleteSessionTokenCookie(event);
-	}
+        if (error) {
+          console.error('Error fetching user:', error);
+        }
 
-	event.locals.user = user;
-	event.locals.session = session;
-	return resolve(event);
+        if (user) {
+          event.locals.user = user;
+        }
+      }
+    } catch (e) {
+      console.warn('Error with session or user retrieval:', e);
+    }
+  }
+
+  return resolve(event);
 };
-
-export const handle: Handle = handleAuth;

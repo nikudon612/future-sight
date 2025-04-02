@@ -16,8 +16,6 @@ export const auth = new Lucia(adapter, {
 			username: userData.username,
 			avatar: userData.avatar_url ?? null,
 			email: userData.email ?? null,
-			discordId: userData.discord_id ?? null,
-			discordGuilds: userData.discord_guilds ?? null,
 			globalName: userData.global_name ?? null,
 
 		};

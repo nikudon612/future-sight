@@ -5,6 +5,8 @@ export const user = pgTable('user', {
 	id: text('id').primaryKey(), // Discord ID (string)
 	username: text('username').notNull(),
 	avatar_url: text('avatar_url'),
+	email: text('email'),
+	global_name: text('global_name'),
 	created_at: timestamp('created_at', { mode: 'date' }).defaultNow()
 });
 

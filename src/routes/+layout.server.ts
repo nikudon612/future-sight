@@ -1,19 +1,15 @@
-// // src/routes/+layout.server.ts
-// import type { LayoutServerLoad } from './$types';
+// // src/routes/+layout.ts
+// import { getSession } from '@lucia-auth/sveltekit';
 
-// export const load: LayoutServerLoad = async ({ locals }) => {
-//   // Validate the session
-//   const session = await locals.auth.validate();
-  
-//   if (session) {
-//     // Return the user if session exists
+// export async function load({ session }) {
+//   const user = session.user;
+//   if (user) {
 //     return {
-//       user: session.user
+//       user
+//     };
+//   } else {
+//     return {
+//       user: null
 //     };
 //   }
-  
-//   // Return null if no session
-//   return {
-//     user: null
-//   };
-// };
+// }
