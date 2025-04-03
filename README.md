@@ -1,8 +1,3 @@
-Got it — here’s a clean, updated **README** that blends the structure and voice of the original while reflecting your new stack (Lucia instead of Supabase) and current direction:
-
----
-
-```markdown
 # 🔮 Future Sight Scheduler
 
 A Discord-integrated scheduling app built to organize and streamline Magic: The Gathering Commander games for your playgroup. Rebuilt from the ground up using SvelteKit and Lucia, **Future Sight** empowers you to schedule games, manage players, and send reminders with ease.
