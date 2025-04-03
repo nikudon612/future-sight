@@ -5,16 +5,30 @@
 	import UserProfile from '$lib/components/UserProfile.svelte';
 
 	import { user, upcomingGames, myGames } from '$lib/stores';
-	let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	import { supabase } from '$lib/supabaseClient';
+	import { onMount } from 'svelte';
 
+	let timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 	export let data;
-	console.log(data);
-	console.log(data.user);
+
+	let userLoaded = false;
+
+	onMount(async () => {
+		const { data: sessionData, error } = await supabase.auth.getSession();
+
+		if (sessionData?.session?.user) {
+			data.user = sessionData.session.user;
+			userLoaded = true;
+			console.log('✅ Logged-in user:', data.user);
+		} else {
+			console.warn('⚠️ No session user found');
+		}
+	});
 </script>
 
-<pre class="bg-white/10 p-4 mt-4 rounded overflow-auto text-xs text-white">
+<!-- <pre class="bg-white/10 p-4 mt-4 rounded overflow-auto text-xs text-white">
     {JSON.stringify(data, null, 2)}
-  </pre>
+</pre> -->
 
 <main
 	class="min-h-screen h-full w-full text-white bg-gradient-to-br from-[#c3efff] via-[#69a8e3] to-[#2f4da1] bg-fixed bg-cover bg-blend-overlay p-6 font-sans overflow-y-auto"
@@ -23,23 +37,18 @@
 		<!-- Header -->
 		<header class="flex items-center justify-between">
 			<h1 class="text-10xl font-bold drop-shadow">🔮 Future Sight</h1>
-
 			<div class="text-sm text-white/80">Timezone: {timezone}</div>
 		</header>
-
-		<!-- Next Game Widget -->
-		<!-- {#if myGames.length > 0}
-			<NextGame game={myGames[0]} />
-		{/if} -->
 
 		<!-- Schedule a Game -->
 		<ScheduleGameForm />
 
-		<!-- Upcoming Games Feed -->
-		<!-- <UpcomingGamesFeed games={upcomingGames} /> -->
-
 		<!-- My Profile -->
-		<UserProfile user={data.user} timezone={data.user?.timezone ?? 'America/New_York'} />
+		{#if userLoaded && data.user}
+			<UserProfile user={data.user} timezone={data.user?.timezone ?? 'America/New_York'} />
+		{:else}
+			<p class="text-white/80 mt-6">Loading your profile...</p>
+		{/if}
 
 		<footer class="text-center text-white/60 text-sm pt-10">
 			© {new Date().getFullYear()} Future Sight Scheduler

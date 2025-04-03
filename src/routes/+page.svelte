@@ -1,12 +1,25 @@
 <script>
-	export let data;
-	import '../app.css';
+	import { supabase } from '$lib/supabaseClient'; // Ensure Supabase is initialized properly
+
+	const signInWithDiscord = async () => {
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: 'discord',
+			options: {
+				redirectTo: 'http://localhost:5173/callback' // 👈 important!
+			}
+		});
+
+		if (error) {
+			console.error('Error during Discord sign-in:', error.message);
+		} else {
+			console.log('Redirecting to Discord...');
+		}
+	};
 </script>
 
 <div class="page-container text-white p-4 mt-4 rounded-lg shadow-lg">
 	<div class="container">
 		<div class="logo">🔮</div>
-
 		<h1>Future Sight Scheduler</h1>
 		<div class="tagline-block">
 			<div class="tagline-top">Plan Ahead. Play More.</div>
@@ -15,12 +28,15 @@
 				seamless reminders.
 			</div>
 		</div>
-		<a href="/login" class="login-btn">Login with Discord</a>
+
+		<!-- Button now triggers the Discord login -->
+		<button on:click={signInWithDiscord} class="login-btn">Login with Discord</button>
 	</div>
 	<footer>© {new Date().getFullYear()} Future Sight Scheduler</footer>
 </div>
 
 <style>
+	/* Your styles remain the same */
 	.page-container {
 		height: 100vh;
 		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
